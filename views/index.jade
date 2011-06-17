@@ -1,2 +1,48 @@
-h1= title
-p Welcome to #{title}
+section.slides.layout-regular.template-default
+  article
+    h1 JavaScript<br> On The Other Side
+    p Coddy<br>2011-07-10
+  article
+    q JavaScript runs on the server side?<br>You gotta be kidding me!
+    .author Many JS Programmers
+  article
+    h3 Evolution of JavaScript
+    ul.build
+      li JavaScript was at first designed to run EVERYWHERE
+        ul.smaller
+          li LiveScript for the browser clients
+          li LiveWire for the backend logic
+      li Became a must between the Browser War
+      li And now, the Server Side JavaScript (SSJS) arises...
+  article
+    h3 Introducing the Rising Star
+    p 
+      img.centered todo need to add scr here
+  article
+    h3 What is NodeJS?
+  article
+    h3 Why NodeJS?
+    ul.build
+      li It unifies the language between clients and servers
+        ul.smaller
+          li Eg: Check user upload file type (image)
+          li No Back End, No Front End, only JavaScript!
+      li It makes better performance
+        ul.smaller
+          li 
+      li It is soooooooo COOL!
+  article
+    h3 Hello World, in node way.
+    section
+      pre
+        |var http = require('http');
+        |http.createServer(function (req, res) {
+        |res.writeHead(200, {'Content-Type': 'text/plain'});
+        |res.end('Hello World\n');
+        |}).listen(8124, "127.0.0.1");
+        |console.log('Server running at http://127.0.0.1:8124/')
+  article 
+    h3 Code Reuse
+    code 
+  article 
+    h3 Callback/Event Driven
