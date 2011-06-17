@@ -1,53 +1,78 @@
 section.slides.layout-regular.template-default
   article
-    h1 JavaScript<br> On The Other Side
+    h1 <b>NodeJS:</b><br>JavaScript On The Other Side
     p Coddy<br>2011-07-10
+    
   article
     q JavaScript runs on the server side?<br>You gotta be kidding me!
     .author Many JS Programmers
+    
   article
     h3 Evolution of JavaScript
     ul.build
       li JavaScript was at first designed to run EVERYWHERE
-        ul.smaller
+        ul
           li LiveScript for the browser clients
           li LiveWire for the backend logic
       li Became a must during the Browser War
       li And now, the Server Side JavaScript (SSJS) arises...
-  article
-    h3 Introducing the Rising Star
+      
+  article.smaller
+    h3 Introducing the Rising Star    
+    q To provide a <b>purely evented</b>, <b>non-blocking</b> infrastructure to script <b>highly concurrent</b> programs.
+    .author The Node.JS Project
     p 
       img(src='images/node-logo.png').centered
+
   article
     h3 What is NodeJS?
     ul
       li Evented Server-side Javascript
       li I/O nonblocking and asynchronous
-  
+      li Single thread, one call stack 
+       
   article
     h3 Why NodeJS?
     ul.build
       li It unifies the language between clients and servers
-        ul.smaller
-          li Eg: Check user upload file type (image)
+        ul
+          li E.G. Check user upload file type (image)
           li No Back End, No Front End, Only JavaScript!
       li It makes better performance
-        ul.smaller
+        ul
           li 
       li It is soooooooo COOL!
+      
   article
-    h3 Hello World, in node way.
+    h3 Hello World, in Node's Way.
     section
       pre
         |var http = require('http');
         |  http.createServer(function (req, res) {
         |    res.writeHead(200, {'Content-Type': 'text/plain'});
-        |    res.end('Hello World\n');
+        |    res.end('Hello World');
         |  }).listen(8124, "127.0.0.1");
         |console.log('Server running at http://127.0.0.1:8124/')
+    p 6 lines to create a http server. 
+       
+  article
+    h3 Hello World, in node way.
+    section
+      pre
+        |var http = require(’http’);
+        |server = http.createServer(function (req,res) {
+        |  res.writeHead(200, {’Content-Type’: ’text/plain’});     
+        |  res.write("Hello"); 
+        |  setTimeout(function () {
+        |    res.end(’World’);
+        |  }, 2000);
+        |}).listen(8124);
+        |console.log('Server running at http://127.0.0.1:8124/')
+        
   article 
     h3 Code Reuse
     code 
+    
   article
     h3 I/O Latency
     p L1: 3 cycles
@@ -55,8 +80,10 @@ section.slides.layout-regular.template-default
     p RAM: 250 cycles
     p DISK: 41,000,000 cycles
     p NETWORK: 240,000,000 cycles
+        
   article 
     h3 Callback/Event Driven
+    
   article
     h3 Resources
     p http://nodejs.org/
