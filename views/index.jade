@@ -27,21 +27,9 @@ section.slides.layout-regular.template-default
   article
     h3 What is NodeJS?
     ul
-      li Evented Server-side Javascript
-      li I/O nonblocking and asynchronous
+      li Event loop Server-side JavaScript
+      li Built on Google V8 engine
       li Single thread, one call stack 
-       
-  article
-    h3 Why NodeJS?
-    ul.build
-      li It unifies the language between clients and servers
-        ul
-          li E.G. Check user upload file type (image)
-          li No Back End, No Front End, Only JavaScript!
-      li It makes better performance
-        ul
-          li 
-      li It is soooooooo COOL!
       
   article
     h3 Hello World, in Node's Way.
@@ -53,43 +41,96 @@ section.slides.layout-regular.template-default
         |    res.end('Hello World');
         |  }).listen(8124, "127.0.0.1");
         |console.log('Server running at http://127.0.0.1:8124/')
-    p 6 lines to create a http server. 
-       
+    p 6 LoC to create a http server. 
+           
   article
-    h3 Hello World, in node way.
-    section
-      pre
-        |var http = require(’http’);
-        |server = http.createServer(function (req,res) {
-        |  res.writeHead(200, {’Content-Type’: ’text/plain’});     
-        |  res.write("Hello"); 
-        |  setTimeout(function () {
-        |    res.end(’World’);
-        |  }, 2000);
-        |}).listen(8124);
-        |console.log('Server running at http://127.0.0.1:8124/')
-        
-  article 
-    h3 Code Reuse
-    code 
-    
+    h3 Why NodeJS?
+    ul.build
+      li It unifies the language between clients and servers
+        ul
+          //li E.G. Check user-upload file type (image)
+          //li Support long polling
+          //li No Back End, No Front End, Only JavaScript!
+          li Possibility for code reuse
+          li No need to encode/decode JSON object
+      li It is suited for real-time web applications
+        ul
+          li Persistent connection from browser to server
+          li No need to maintaini separate threads
+      li It makes better performance
+        ul
+          li Non I/O blocking
+      li It is soooooooo COOL!
+       
   article
     h3 I/O Latency
     p L1: 3 cycles
     p L2: 14 cycles
     p RAM: 250 cycles
-    p DISK: 41,000,000 cycles
-    p NETWORK: 240,000,000 cycles
+    p.blue Disk: 41,000,000 cycles
+    p.red Network: 240,000,000 cycles
+    .source http://s3.amazonaws.com/four.livejournal/20091117/jsconf.pdf
         
   article 
-    h3 Callback/Event Driven
+    h3 Blocking vs Non-blocking
+    section
+      p The blocking way:
+      pre
+        |var result = db.query("select..");
+        |print('I can not print until the result is returned.')
+        |print('And the I/O is damn SLOW.');
+    section
+      p The non-blocking way:
+      pre
+        |db.query("select..", function (result) {
+        |  print('Handle the result now.');
+        |});
+        |print('No more waiting.');
+        |print('Handle the result when it is available');
+        
+  article
+    h3 The Node Ecosystem
+
+  article
+    h2 Node express demo
+    
+  article 
+    h3 Something Bothoring Me
+    ul
+      li IDE support
+        ul          
+          li Vim is powerful, but no for everyone
+          li 
+            a(href='http://www.cloud9ide.com') Cloud9IDE 
+            |might be a nice choice
+      li Unit testing framework
+      li Debugging & Event Handling
+        ul
+          li No long trace yet, hard to locate where sth went wrong
+          li UncaughtException? The whole process would go down...
+          
+  article 
+    h3 The Future Node
+    p Windows support
+    p New networking layer
+    p Long traceback
+    p ...
+    .build
+      p Linux + Node.js + MongoDB:
+      p The new LAMP is on the way
+            
     
   article
     h3 Resources
-    p http://nodejs.org/
-    p http://github.com/ry/node/wiki
-    p http://howtonode.org/
-    p http://dailyjs.com/
-    p http://cnodejs.org/
+    p 
+      a(href='http://nodejs.org/') http://nodejs.org/
+    p 
+      a(href='http://github.com/ry/node/wiki') http://github.com/ry/node/wiki
+    p 
+      a(href='http://howtonode.org/') http://howtonode.org/
+    p 
+      a(href='http://dailyjs.com/') http://dailyjs.com/
+    p 
+      a(href='http://cnodejs.org/') http://cnodejs.org/
         
     
