@@ -15,11 +15,13 @@ section.slides.layout-regular.template-default
           li LiveScript for the browser clients
           li LiveWire for the backend logic
       li Became a must during the Browser War
+      .build
+        |though for clients only
       li And now, the Server Side JavaScript (SSJS) arises...
       
   article.smaller
-    h3 Introducing the Rising Star    
-    q To provide a <b>purely evented</b>, <b>non-blocking</b> infrastructure to script <b>highly concurrent</b> programs.
+    //h3 Introducing the Rising Star    
+    q To provide a <b><i>purely evented</i></b>, <b><i>non-blocking</i></b> infrastructure to script <b><i>highly concurrent</i></b> programs.
     .author The Node.JS Project
     p 
       img(src='images/node-logo.png').centered
@@ -56,10 +58,11 @@ section.slides.layout-regular.template-default
       li It is suited for real-time web applications
         ul
           li Persistent connection from browser to server
-          li No need to maintaini separate threads
+          li No need to maintain separate threads
       li It makes better performance
         ul
           li Non I/O blocking
+          li Make better use of CPU
       li It is soooooooo COOL!
        
   article
@@ -79,21 +82,35 @@ section.slides.layout-regular.template-default
         |var result = db.query("select..");
         |print('I can not print until the result is returned.')
         |print('And the I/O is damn SLOW.');
+        |do_something_with_result(result);
     section
       p The non-blocking way:
       pre
         |db.query("select..", function (result) {
-        |  print('Handle the result now.');
+        |    print('Handle the result now.');
+        |    do_something_with_result(result);
         |});
         |print('No more waiting.');
-        |print('Handle the result when it is available');
+        |print('Do the following right away');
+        |do_something_else();
         
   article
     h3 The Node Ecosystem
-
+    p Over 4700 watchers on Github
+    p More than 1600 modules posted
+    p 60+ contributors
+    p Three books in progres
+    p Gets better everyday
+    
   article
     h2 Node express demo
-    
+
+  article
+    h3 NodeJS Limitations
+    p Hard core CPU calculating
+    p Large string transfer
+    p 1G memory limit due to V8 engine
+        
   article 
     h3 Something Bothoring Me
     ul
