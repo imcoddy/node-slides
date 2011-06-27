@@ -1,7 +1,9 @@
 section.slides.layout-regular.template-default
   article
     h1 <b>NodeJS:</b><br>JavaScript On The Other Side
-    p Coddy<br>2011-07-10
+    p
+      a(href='http://twitter.com/imcoddy') @imcoddy
+      <br>2011-07-10
     
   article
     q JavaScript runs on the server side?<br>You gotta be kidding me!
@@ -29,7 +31,7 @@ section.slides.layout-regular.template-default
   article
     h3 What is NodeJS?
     ul
-      li Event loop Server-side JavaScript
+      li Event-driven server-side JavaScript
       li Built on Google V8 engine
       li Single thread, one call stack 
       
@@ -48,7 +50,7 @@ section.slides.layout-regular.template-default
   article
     h3 Why NodeJS?
     ul.build
-      li It unifies the language between clients and servers
+      li It unifies the language between browsers and servers
         ul
           //li E.G. Check user-upload file type (image)
           //li Support long polling
@@ -95,11 +97,19 @@ section.slides.layout-regular.template-default
         |do_something_else();
         
   article
+    q Everything runs in parallel, <b>EXCEPT YOUR CODE</b>.
+    .author Philosophy of NodeJS
+    
+  article
+    h3 Heavy I/O
+        
+  article
     h3 The Node Ecosystem
     p Over 4700 watchers on Github
     p More than 1600 modules posted
     p 60+ contributors
-    p Three books in progres
+    p Three books in progress
+    p One command to install: npm install module-you-want
     p Gets better everyday
     
   article
@@ -125,6 +135,39 @@ section.slides.layout-regular.template-default
         ul
           li No long trace yet, hard to locate where sth went wrong
           li UncaughtException? The whole process would go down...
+      li Too many callbacks
+
+  article
+    h3 The Long And Deep Callback Chain
+    pre
+      |self.handleQuery = function(client, message) {
+      |  var query = message.query;
+      |    Blip.query(query).all(function(results) {
+      |      client.send(
+      |        {buffer:
+      |          results.map(
+      |            function(msg) {
+      |              return {message: {
+      |                  sender: msg.sender,
+      |                  content: msg.content,
+      |                  }
+      |               }
+      |            }
+      |         )
+      |      });
+      |  });
+      |};
+
+  article
+    h3 Well, You Can Make It Shorter With CoffeeScript
+    pre
+      |@handleQuery = (client, message) ->
+      |  Blip.query(message.query).all (results) ->
+      |    client.send buffer:
+      |      results.map (msg) ->
+      |        message:
+      |          sender: msg.sender
+      |          content: msg.content
           
   article 
     h3 The Future Node
