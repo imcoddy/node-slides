@@ -12,7 +12,7 @@ section.slides.layout-regular.template-default
   article
     h3 Evolution of JavaScript
     ul.build
-      li JavaScript was at first designed to run EVERYWHERE
+      li JavaScript was at first designed to run <b>everywhere</b>
         ul
           li LiveScript for the browser clients
           li LiveWire for the backend logic
@@ -30,6 +30,7 @@ section.slides.layout-regular.template-default
 
   article
     h3 What is NodeJS?
+    p  Node.JS is not a JS framework, but a JS interpreter
     ul
       li Event-driven server-side JavaScript
       li Built on Google V8 engine
@@ -74,7 +75,7 @@ section.slides.layout-regular.template-default
     p RAM: 250 cycles
     p.blue Disk: 41,000,000 cycles
     p.red Network: 240,000,000 cycles
-    .source http://s3.amazonaws.com/four.livejournal/20091117/jsconf.pdf
+    .source source: http://s3.amazonaws.com/four.livejournal/20091117/jsconf.pdf
         
   article 
     h3 Blocking vs Non-blocking
@@ -85,7 +86,7 @@ section.slides.layout-regular.template-default
         |print('I can not print until the result is returned.')
         |print('And the I/O is damn SLOW.');
         |do_something_with_result(result);
-    section
+    section.build
       p The non-blocking way:
       pre
         |db.query("select..", function (result) {
@@ -101,8 +102,17 @@ section.slides.layout-regular.template-default
     .author Philosophy of NodeJS
     
   article
-    h3 Heavy I/O
+    h3 Struture of NodeJS
+    p 
+      img(src='images/node-structure.png').centered
+    .source source: http://s3.amazonaws.com/four.livejournal/20091117/jsconf.pdf
         
+  article
+    h3 Why NodeJS Chose JavaScript?
+    p Callback
+    p Closure
+    p 
+            
   article
     h3 The Node Ecosystem
     p Over 4700 watchers on Github
@@ -118,12 +128,12 @@ section.slides.layout-regular.template-default
   article
     h3 NodeJS Limitations
     p Hard core CPU calculating
-    p Large string transfer
+    p Large content transfer
     p 1G memory limit due to V8 engine
         
   article 
-    h3 Something Bothoring Me
-    ul
+    h3 Something Bothering Me
+    ul.build
       li IDE support
         ul          
           li Vim is powerful, but no for everyone
@@ -168,10 +178,24 @@ section.slides.layout-regular.template-default
       |        message:
       |          sender: msg.sender
       |          content: msg.content
-          
+
+  article
+    h3 Async Makes Testing Difficult
+    pre
+      | collection = 'test'
+      | query = {}
+      | app.count collection,query,(count)->
+      |   doc = 
+      |     name:1
+      |   app.save collection,doc,()-> 
+      |     console.log 'save in '+collection
+      |     app.count collection,query,(result)->
+      |        assert.eql count+1,result
+      | collection = 'product'
+    p.smaller Even the save action was supposed to execute in the 'test' collection, the document will be saved in 'product' collection!
   article 
     h3 The Future Node
-    p Windows support
+    p Windows porting with MS offical support
     p New networking layer
     p Long traceback
     p ...
