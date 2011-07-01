@@ -34,9 +34,9 @@ app.get('/', function(req, res){
   });
 });
 
-app.get('/course', function(req, res){
-  res.render('course', {
-    title: 'Express'
+app.get('/sample', function(req, res){
+  res.render('sample', {
+    title: 'Jade sample code'
   });
 });
 app.listen(3000);

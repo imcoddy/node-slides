@@ -1,0 +1,93 @@
+section.slides.layout-regular.template-default
+  article
+    h1 Title Goes From Here<br>To Two Lines
+    p Presenter<br> 2011-07-01
+    
+  article
+    p This is a slide with just text. This is a slide with just text.
+    p This is a slide with just text. This is a slide with just text.
+    p This is a slide with just text. This is a slide with just text.
+    p One more line      
+    
+  article
+    h3 Simple slide with header and text
+    p This is a slide with just text. This is a slide with just text.
+    p This is a slide with just text. This is a slide with just text.
+    p This is a slide with just text. This is a slide with just text.
+    p One more line just underneath with a <code>code sample: 5px</code>.
+    
+  article.smaller
+    h3 Simple slide with header and text (small font)
+    p This is a slide with just text. This is a slide with just text.
+    p This is a slide with just text. This is a slide with just text.
+    p This is a slide with just text. This is a slide with just text.
+    
+  article
+    h3 Slide with bullet points and a longer title, just because we can make it longer
+    ul
+      li Use this template to create your presentation
+      li Use the provided color palette, box and arrow graphics, and chart styles
+      li Instructions are provided to assist you in using this presentation template effectively
+  article
+    h3 Slide with bullet points that builds
+    ul.build
+      li This is an example of list
+      li The list items fade in
+      li The last one
+    .build
+      p Any element with child nodes can build.
+      p It doesn't have to be a list.
+  article
+    h3 Slide with a table
+    table
+      tr
+        th Name
+        th Occupation
+      tr
+        td Marcin Wichary
+        td The Michale Bay of Doodles
+  article
+    h3 Styles
+    ul
+      li
+        span.red class='red'
+      li
+        span.blue class='blue'
+      li
+        span.green class='green'
+      li
+        span.yellow class='yellow'
+      li
+        span.black class='black'
+      li
+        span.white class='white'
+  
+  article
+    h3 Slides with image
+    p
+      img(style='width:500px;height:300px',src='images/node-logo.png').centered
+  article.fill 
+    h3 Slides fill with image
+    p
+      img(src='images/example-cat.jpg').centered
+    .source.white Source: Eric Schmidt
+  article
+    h3 Include source code
+    section
+      pre
+        |var http = require('http');
+        |  http.createServer(function (req, res) {
+        |    res.writeHead(200, {'Content-Type': 'text/plain'});
+        |    res.end('Hello World');
+        |  }).listen(8124, "127.0.0.1");
+        |console.log('Server running at http://127.0.0.1:8124/');
+  article.smaller
+    q A distributed system is one in which the failure of a computer you didn’t even know existed can render your own computer unusable.
+    .author Leslie Lamport
+  article
+    h3 Thank You!
+    ul
+      li 
+        a(href='http://code.google.com/p/html5slides/') Google Slides Framework
+      li
+        a(href='https://github.com/imcoddy/node-slides') Node Slides
