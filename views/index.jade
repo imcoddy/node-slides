@@ -106,22 +106,25 @@ section.slides.layout-regular.template-default
     .source source: http://s3.amazonaws.com/four.livejournal/20091117/jsconf.pdf
         
   article
-    h3 Why NodeJS Chose JavaScript?
-    p Callback
-    p Closure
-    p 
-            
+    h3 Why JavaScript Suits NodeJS?
+    ul
+      li Callback
+      li Closure
+      li Evented
+    p.build NodeJS brings the power of JavaScript to the server side.
+    
+  article
+    h2 Node express demo
+  
   article
     h3 The Node Ecosystem
     p Over 4700 watchers on Github
     p More than 1600 modules posted
     p 60+ contributors
-    p Three books in progress
-    p One command to install: npm install module-you-want
+    p 3 books in progress
+    p 1 command to install: npm install module-you-want
+    p 0.5 unstable version just released 
     p Gets better everyday
-    
-  article
-    h2 Node express demo
 
   article
     h3 NodeJS Limitations
@@ -144,7 +147,67 @@ section.slides.layout-regular.template-default
           li No long trace yet, hard to locate where sth went wrong
           li UncaughtException? The whole process would go down...
       li Too many callbacks
+      
+  article
+    h3 NodeJS makes thinking differently
+    pre
+      |var data = {}
+      |db.getPosts(10, function(err,posts){
+      |  data.posts = posts;
+      |});
+      |db.getComments(10, function(err, comments){
+      |  data.comments = comments;
+      |});      
+      |db.getTags(function(err, tags){
+      |  data.tags = tags;
+      |})
+      | 
+      |// view.render(data)
+      |// How do you know when everything is ready?
+    .source http://www.slideshare.net/QLeelulu/nodejs-8283613
 
+  article
+    h3 NodeJS makes thinking differently (cont.)
+    pre
+      |function Combo(callback){
+      |  this.callback = callback;
+      |  this.items = 0;
+      |}      
+      |Combo.prototype = {
+      |  add: function(){
+      |    this.items++;
+      |  },
+      |  finishOne: function(){
+      |    this.items--;
+      |    this.check();
+      |  },
+      |  check: function(){
+      |    if(this.items === 0){
+      |      this.callback.apply(this);
+      |    }
+      |  }
+      |};
+   
+  article
+    h3 NodeJS makes thinking differently (cont.)
+    pre
+      |var data = {};
+      |var combo = new Combo(function(){
+      |  view.render(data);
+      |});
+      |combo.add();
+      |db.getPosts(10, function(err,posts){
+      |  data.posts = posts;
+      |  combo.finishOne();});
+      |combo.add();
+      |db.getComments(10, function(err, comments){
+      |  data.comments = comments;
+      |  combo.finishOne();});
+      |combo.add()
+      |db.getTags(function(err, tags){
+      |  data.tags = tags;
+      |  combo.finishOne();})  
+      
   article
     h3 The Long And Deep Callback Chain
     pre
@@ -190,7 +253,9 @@ section.slides.layout-regular.template-default
       |     app.count collection,query,(result)->
       |        assert.eql count+1,result
       | collection = 'product'
-    p.smaller Even the save action was supposed to execute in the 'test' collection, the document will be saved in 'product' collection!
+      |// save action was supposed to execute in the 'test' collection
+      |// but it will actually be saved in 'product' collection!
+  //  p.smaller Even the save action was supposed to execute in the 'test' collection, the document will be saved in 'product' collection!
   article 
     h3 The Future Node
     p Windows porting with MS offical support
