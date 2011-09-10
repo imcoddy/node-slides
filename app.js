@@ -39,5 +39,7 @@ app.get('/sample', function(req, res){
     title: 'Jade sample code'
   });
 });
-app.listen(3000);
-console.log("Express server listening on port %d", app.address().port);
+var port = process.env.PORT || 3000;
+app.listen(port, function() {
+    console.log("Listening on " + port);
+});
